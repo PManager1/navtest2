@@ -29,9 +29,15 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function DetailsScreen() {
+function DetailsScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Feather name="arrow-left" size={24} color="black" />
+      </TouchableOpacity>
       <Text style={styles.text}>Details Screen</Text>
       <StatusBar style="auto" />
     </View>
@@ -73,8 +79,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerStyle: { backgroundColor: '#f0f0f0' },
-          headerTitle: '', // No title for Details screen
+          headerShown: false, // Hide the header for all stack screens
         }}
       >
         <Stack.Screen
@@ -126,6 +131,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   menuButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+    padding: 10,
+  },
+  backButton: {
     position: 'absolute',
     top: 40,
     left: 20,
